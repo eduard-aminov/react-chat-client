@@ -1,12 +1,17 @@
 import React from 'react'
-import Routes from '../../routes'
 import './Auth.scss'
+import {LoginForm, RegisterForm} from '../../modules'
 
-const Auth = () => {
+const Auth = ({location}) => {
+    const isRegisterPage = location.pathname.includes('register')
+
     return (
         <section className='auth'>
             <div className='auth-content'>
-                <Routes/>
+                {!isRegisterPage
+                    ? <LoginForm />
+                    : <RegisterForm />
+                }
             </div>
         </section>
     )

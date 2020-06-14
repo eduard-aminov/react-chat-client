@@ -1,10 +1,10 @@
 import React from 'react'
-import {Auth} from './pages'
+import Routes from './routes'
 
 function App() {
     return (
         <div className="wrapper">
-            <Auth />
+            <Routes/>
         </div>
     )
 }
