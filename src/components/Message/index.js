@@ -7,9 +7,29 @@ import './Message.scss'
 import readedPng from '../../assets/img/readed.png'
 import noreadedPng from '../../assets/img/noreaded.png'
 
-const Message = ({user, avatar, text, date, isMe, isReaded, attachments}) => {
+const Message = (props) => {
+    const {
+        user,
+        avatar,
+        text,
+        date,
+        isMe,
+        isReaded,
+        isTyping,
+        attachments
+    } = props
+
+    const messageClasses = classNames(
+        {
+            'message': true,
+            'message--isme': isMe,
+            'message--is-typing': isTyping,
+            'message--image': attachments && attachments.length === 1
+        }
+    )
+
     return (
-        <div className={classNames('message', {'message--isme': isMe})}>
+        <div className={messageClasses}>
             <div className='message__content'>
                 {isMe && ( isReaded
                     ? (
@@ -22,26 +42,37 @@ const Message = ({user, avatar, text, date, isMe, isReaded, attachments}) => {
                     <img src={avatar} alt={`Avatar of ${user.fullName}`} />
                 </div>
                 <div className="message__info">
-                    <div className='message__bubble'>
-                        <p className='message__text'>
-                            {text}
-                        </p>
-                    </div>
+                    {(text || isTyping) && (
+                        <div className='message__bubble'>
+                            {text && (
+                                <p className='message__text'>
+                                    {text}
+                                </p>
+                            )}
+                            {isTyping && (
+                                <div className="message__typing">
+                                    <span/>
+                                    <span/>
+                                    <span/>
+                                </div>
+                            )}
+                        </div>
+                    )}
                     <div className="message__attachments">
                         {attachments &&
                         (
                             attachments.map(item => (
-                                <div className="message__attachments-item">
+                                <div key={item.url} className="message__attachments-item">
                                     <img src={item.url} alt={item.image}/>
                                 </div>
                             ))
                         )}
                     </div>
-                    <span
-                        className='message__date'
-                    >
-                    {formatDistanceToNow(date, {addSuffix: true, locale: ruLocale})}
-                </span>
+                    {date && (
+                        <span className='message__date'>
+                        {formatDistanceToNow(date, {addSuffix: true, locale: ruLocale})}
+                    </span>
+                    )}
                 </div>
             </div>
         </div>
@@ -59,7 +90,8 @@ Message.propTypes = {
     avatar: PropTypes.string,
     text: PropTypes.string,
     date: PropTypes.instanceOf(Date),
-    attachments: PropTypes.array
+    attachments: PropTypes.array,
+    isTyping: PropTypes.bool
 }
 
 export default Message
