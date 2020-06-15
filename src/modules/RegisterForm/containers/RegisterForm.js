@@ -2,16 +2,27 @@ import {withFormik} from 'formik'
 import RegisterForm from '../components/RegisterForm'
 
 export default withFormik({
+    enableReinitialize: true,
+    mapPropsToValues: () => ({
+      email: '',
+      username: '',
+      password: '',
+      password2: ''
+    }),
     validate: values => {
-        let errors = {};
+        let errors = {}
         if (!values.email) {
-            errors.email = 'Введите email адрес';
+            errors.email = 'Введите email адрес'
         } else if (
             !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(
                 values.email
             )
         ) {
-            errors.email = 'Некорректный email адрес ';
+            errors.email = 'Некорректный email адрес '
+        }
+
+        if (!values.username) {
+            errors.username = 'Введите логин'
         }
 
         if (!values.password) {
@@ -41,4 +52,4 @@ export default withFormik({
     },
 
     displayName: 'RegisterForm',
-})(RegisterForm);
+})(RegisterForm)

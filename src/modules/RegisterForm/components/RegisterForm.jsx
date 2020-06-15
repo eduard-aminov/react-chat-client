@@ -45,11 +45,23 @@ const RegisterForm = (props) => {
                                     onBlur={handleBlur}
                                 />
                             </Form.Item>
-                            <Form.Item>
+                            <Form.Item
+                                validateStatus={
+                                    !touched.username
+                                        ? ''
+                                        : errors.username ? 'error' : 'success'
+                                }
+                                help={!touched.username ? '' : errors.username}
+                                hasFeedback
+                            >
                                 <Input
+                                    id='username'
                                     size='large'
                                     prefix={<UserOutlined className="site-form-item-icon" />}
-                                    placeholder="Ваше имя"
+                                    placeholder="Логин"
+                                    value={values.username}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
                                 />
                             </Form.Item>
                             <Form.Item
