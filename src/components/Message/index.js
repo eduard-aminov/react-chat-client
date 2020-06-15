@@ -1,11 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import formatDistanceToNow from 'date-fns/formatDistanceToNow'
-import ruLocale from 'date-fns/locale/ru'
 import classNames from 'classnames'
+
+import {MessageStatusIcon, Time} from '../../components'
 import './Message.scss'
-import readedPng from '../../assets/img/readed.png'
-import noreadedPng from '../../assets/img/noreaded.png'
 
 const Message = (props) => {
     const {
@@ -31,13 +29,7 @@ const Message = (props) => {
     return (
         <div className={messageClasses}>
             <div className='message__content'>
-                {isMe && ( isReaded
-                    ? (
-                        <img className='message__icon-readed' src={readedPng} alt="Readed icon"/>
-                    )
-                    : (
-                        <img className='message__icon-noreaded' src={noreadedPng} alt="NotReaded icon"/>
-                    ))}
+                <MessageStatusIcon isMe={isMe} isReaded={isReaded} />
                 <div className='message__avatar'>
                     <img src={avatar} alt={`Avatar of ${user.fullName}`} />
                 </div>
@@ -70,7 +62,7 @@ const Message = (props) => {
                     </div>
                     {date && (
                         <span className='message__date'>
-                        {formatDistanceToNow(date, {addSuffix: true, locale: ruLocale})}
+                        <Time date={date} />
                     </span>
                     )}
                 </div>
