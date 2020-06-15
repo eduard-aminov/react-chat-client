@@ -4,7 +4,15 @@ import {Form, Input} from 'antd'
 import {Link} from 'react-router-dom'
 import {Block, Button} from '../../../components'
 
-const RegisterForm = () => {
+const RegisterForm = (props) => {
+    const {
+        values,
+        touched,
+        errors,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+    } = props
     const [isRegistered] = useState(false)
     return (
         <Fragment>
@@ -15,13 +23,26 @@ const RegisterForm = () => {
             <Block>
                 {!isRegistered ? (
                         <Form
+                            onSubmit={handleSubmit}
                             className="login-form"
                         >
-                            <Form.Item>
+                            <Form.Item
+                                validateStatus={
+                                    !touched.email
+                                        ? ''
+                                        : errors.email ? 'error' : 'success'
+                                }
+                                help={!touched.email ? '' : errors.email}
+                                hasFeedback
+                            >
                                 <Input
+                                    id='email'
                                     size='large'
                                     prefix={<MailOutlined className="site-form-item-icon" />}
                                     placeholder="Email"
+                                    value={values.email}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
                                 />
                             </Form.Item>
                             <Form.Item>
@@ -31,24 +52,49 @@ const RegisterForm = () => {
                                     placeholder="Ваше имя"
                                 />
                             </Form.Item>
-                            <Form.Item>
-                                <Input
+                            <Form.Item
+                                validateStatus={
+                                    !touched.password
+                                        ? ''
+                                        : errors.password ? 'error' : 'success'
+                                }
+                                help={!touched.password ? '' : errors.password}
+                                hasFeedback
+                            >
+                                <Input.Password
+                                    id='password'
                                     size='large'
                                     prefix={<LockOutlined className="site-form-item-icon" />}
                                     type="password"
                                     placeholder="Пароль"
+                                    value={values.password}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
                                 />
                             </Form.Item>
-                            <Form.Item>
-                                <Input
+                            <Form.Item
+                                validateStatus={
+                                    !touched.password2
+                                        ? ''
+                                        : errors.password2 ? 'error' : 'success'
+                                }
+                                help={!touched.password2 ? '' : errors.password2}
+                                hasFeedback
+                            >
+                                <Input.Password
+                                    id='password2'
                                     size='large'
                                     prefix={<LockOutlined className="site-form-item-icon" />}
                                     type="password"
                                     placeholder="Повторите пароль"
+                                    value={values.password2}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
                                 />
                             </Form.Item>
                             <Form.Item>
                                 <Button
+                                    onClick={handleSubmit}
                                     size='large'
                                     type='primary'
                                 >

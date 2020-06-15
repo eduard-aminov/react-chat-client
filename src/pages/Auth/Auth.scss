@@ -51,4 +51,12 @@
       color: #ADADAD;
     }
   }
+
+  .ant-form-item-explain {
+    min-height: 0px!important;
+
+    & > div {
+      line-height: 24px!important;
+    }
+  }
 }
