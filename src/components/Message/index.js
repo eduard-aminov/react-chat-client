@@ -7,7 +7,7 @@ import './Message.scss'
 import readedPng from '../../assets/img/readed.png'
 import noreadedPng from '../../assets/img/noreaded.png'
 
-const Message = ({user, avatar, text, date, isMe, isReaded}) => {
+const Message = ({user, avatar, text, date, isMe, isReaded, attachments}) => {
     return (
         <div className={classNames('message', {'message--isme': isMe})}>
             <div className='message__content'>
@@ -26,6 +26,16 @@ const Message = ({user, avatar, text, date, isMe, isReaded}) => {
                         <p className='message__text'>
                             {text}
                         </p>
+                    </div>
+                    <div className="message__attachments">
+                        {attachments &&
+                        (
+                            attachments.map(item => (
+                                <div className="message__attachments-item">
+                                    <img src={item.url} alt={item.image}/>
+                                </div>
+                            ))
+                        )}
                     </div>
                     <span
                         className='message__date'
@@ -48,7 +58,8 @@ Message.propTypes = {
     user: PropTypes.object,
     avatar: PropTypes.string,
     text: PropTypes.string,
-    date: PropTypes.instanceOf(Date)
+    date: PropTypes.instanceOf(Date),
+    attachments: PropTypes.array
 }
 
 export default Message

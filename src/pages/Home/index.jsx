@@ -9,6 +9,20 @@ const Home = () => {
                 avatar='https://sun9-21.userapi.com/c855632/v855632293/123b1a/T3MtZPp64bQ.jpg?ava=1'
                 text='Дарова братан, че как дела?🤗'
                 date={new Date('2020, 6, 13')}
+                attachments={[
+                    {
+                        filename: 'image.jpg',
+                        url: 'https://source.unsplash.com/50x50/?random=1&nature,water'
+                    },
+                    {
+                        filename: 'image.jpg',
+                        url: 'https://source.unsplash.com/50x50/?random=2&nature,water'
+                    },
+                    {
+                        filename: 'image.jpg',
+                        url: 'https://source.unsplash.com/50x50/?random=3&nature,water'
+                    }
+                ]}
             />
             <Message
                 isMe={true}
