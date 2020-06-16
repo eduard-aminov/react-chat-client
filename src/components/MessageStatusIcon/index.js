@@ -1,21 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import noreadedPng from '../../assets/img/noreaded.png'
-import readedPng from '../../assets/img/readed.png'
+import notReadPng from '../../assets/img/notRead.png'
+import readPng from '../../assets/img/read.png'
 
-const MessageStatusIcon = ({isMe, isReaded}) => {
+const MessageStatusIcon = ({isRead}) => {
     return (
-        isMe &&
-        ( isReaded
-        ? ( <img className='message__icon-readed' src={readedPng} alt="Readed icon"/> )
-        : ( <img className='message__icon-noreaded' src={noreadedPng} alt="NotReaded icon"/>)
-        )
+        isRead
+            ? ( <img className='message__icon-read' src={readPng} alt="Read icon"/> )
+            : ( <img className='message__icon-notRead' src={notReadPng} alt="NotRead icon"/>)
     )
 }
 
 MessageStatusIcon.propTypes = {
-    isMe: PropTypes.bool,
-    isReaded: PropTypes.bool
+    isRead: PropTypes.bool
 }
 
 export default MessageStatusIcon

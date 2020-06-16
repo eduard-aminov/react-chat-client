@@ -6,6 +6,7 @@ const Home = () => {
     return (
         <section className='home'>
             <Dialogs
+                currentUserId={0}
                 items={[
                     {
                         _id: Math.random(),
@@ -15,6 +16,7 @@ const Home = () => {
                             isOnline: true
                         },
                         message: {
+                            owner: 1,
                             lastMessage: 'Дарова братан, че как дела?',
                             isRead: false,
                             unreadMessagesCount: 0,

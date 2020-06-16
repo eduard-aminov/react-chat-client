@@ -10,10 +10,11 @@ const DialogItem = (props) => {
     const {
         fullName,
         avatar,
-        isOnline,
         lastMessage,
         createdAt,
         unreadMessagesCount,
+        isOnline,
+        isMe,
         isRead
     } = props
 
@@ -37,7 +38,7 @@ const DialogItem = (props) => {
                 </div>
                 <div className="dialogs__item-info-bottom">
                     <p>{lastMessage}</p>
-                    <MessageStatusIcon isMe={false} isReaded={isRead}/>
+                    {isMe && <MessageStatusIcon isRead={isRead}/>}
                     {unreadMessagesCount > 0 && (
                         <div className='dialogs__item-info-bottom-count'>
                             {
@@ -61,6 +62,7 @@ DialogItem.propTypes = {
     createdAt: PropTypes.instanceOf(Date),
     unreadMessagesCount: PropTypes.number,
     isRead: PropTypes.bool,
+    isMe: PropTypes.bool
 }
 
 export default DialogItem
