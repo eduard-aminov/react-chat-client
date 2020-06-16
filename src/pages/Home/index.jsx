@@ -1,6 +1,6 @@
 import React from 'react'
 import './Home.scss'
-import {DialogItem, Dialogs} from '../../components'
+import {Dialogs} from '../../components'
 
 const Home = () => {
     return (
@@ -8,6 +8,7 @@ const Home = () => {
             <Dialogs
                 items={[
                     {
+                        _id: Math.random(),
                         user: {
                             fullName: 'Камиль Файзрахманов',
                             avatar: 'https://sun9-66.userapi.com/c855036/v855036084/23d7fc/IKHLGx8ruYU.jpg?ava=1',
@@ -17,7 +18,7 @@ const Home = () => {
                             lastMessage: 'Дарова братан, че как дела?',
                             isRead: false,
                             unreadMessagesCount: 0,
-                            createdAt: '13:01'
+                            createdAt: new Date()
                         }
                     }
                 ]}

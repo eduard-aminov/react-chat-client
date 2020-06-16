@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import './Dialogs.scss'
 import {DialogItem} from '../index'
 
@@ -7,17 +8,22 @@ const Dialogs = ({items}) => {
         <div className="dialogs">
             {items.map(item => (
                 <DialogItem
-                    fullname={item.user.fullName}
+                    key={item._id}
+                    fullName={item.user.fullName}
                     avatar={item.user.avatar}
                     isOnline={item.user.isOnline}
                     lastMessage={item.message.lastMessage}
                     createdAt={item.message.createdAt}
                     unreadMessagesCount={item.message.unreadMessagesCount}
-                    isReaded={item.message.isRead}
+                    isRead={item.message.isRead}
                 />
             ))}
         </div>
     )
+}
+
+Dialogs.propTypes = {
+    items: PropTypes.array
 }
 
 export default Dialogs

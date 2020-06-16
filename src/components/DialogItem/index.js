@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import './DialogItem.scss'
-import {MessageStatusIcon, Time} from '../../components'
+import {MessageStatusIcon} from '../'
+import isToday from 'date-fns/isToday'
+import format from 'date-fns/format'
 
 const DialogItem = (props) => {
     const {
@@ -15,6 +17,12 @@ const DialogItem = (props) => {
         isRead
     } = props
 
+    const formatMessageTime = (time) => (
+        isToday(time)
+            ? format(time, 'HH:mm')
+            : format(time, 'dd.MM.yyyy')
+    )
+
     return (
         <div className={classNames('dialogs__item', {'dialogs__item--online': isOnline})}>
             <div className="dialogs__item-avatar">
@@ -24,8 +32,7 @@ const DialogItem = (props) => {
                 <div className="dialogs__item-info-top">
                     <b>{fullName}</b>
                     <span>
-                        {/*<Time date={new Date(2020, 1, 30)} />*/}
-                        {createdAt}
+                        {formatMessageTime(createdAt)}
                     </span>
                 </div>
                 <div className="dialogs__item-info-bottom">
@@ -51,7 +58,7 @@ DialogItem.propTypes = {
     avatar: PropTypes.string,
     isOnline: PropTypes.bool,
     lastMessage: PropTypes.string,
-    createdAt: PropTypes.string,
+    createdAt: PropTypes.instanceOf(Date),
     unreadMessagesCount: PropTypes.number,
     isRead: PropTypes.bool,
 }
