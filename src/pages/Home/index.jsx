@@ -1,62 +1,27 @@
 import React from 'react'
 import './Home.scss'
-import {DialogItem} from '../../components'
+import {DialogItem, Dialogs} from '../../components'
 
 const Home = () => {
     return (
         <section className='home'>
-            <div className="dialogs">
-                <DialogItem
-                    user={{
-                            fullname: 'Камиль Файзрахманов',
+            <Dialogs
+                items={[
+                    {
+                        user: {
+                            fullName: 'Камиль Файзрахманов',
+                            avatar: 'https://sun9-66.userapi.com/c855036/v855036084/23d7fc/IKHLGx8ruYU.jpg?ava=1',
                             isOnline: true
-                        }}
-                    unreadMessagesCount={999}
-                />
-                <DialogItem
-                    user={{
-                        fullname: 'Камиль Файзрахманов',
-                        isOnline: true
-                    }}
-                    unreadMessagesCount={0}
-                />
-                <DialogItem
-                    user={{
-                        fullname: 'Камиль Файзрахманов',
-                        isOnline: true
-                    }}
-                    unreadMessagesCount={0}
-                />
-                <DialogItem
-                    user={{
-                        fullname: 'Камиль Файзрахманов',
-                        isOnline: true
-                    }}
-                    unreadMessagesCount={0}
-                />
-                <DialogItem
-                    user={{
-                        fullname: 'Камиль Файзрахманов',
-                        isOnline: true
-                    }}
-                    unreadMessagesCount={0}
-                />
-            </div>
-            {/*<Dialogs*/}
-            {/*    items={[*/}
-            {/*        {*/}
-            {/*            user: {*/}
-            {/*                fullname: 'Камиль Файзрахманов',*/}
-            {/*                avatar: null,*/}
-            {/*            },*/}
-            {/*            message: {*/}
-            {/*                text: 'Дарова братан, че как дела?',*/}
-            {/*                isReaded: false,*/}
-            {/*                createdAt: new Date()*/}
-            {/*            }*/}
-            {/*        }*/}
-            {/*    ]}*/}
-            {/*/>*/}
+                        },
+                        message: {
+                            lastMessage: 'Дарова братан, че как дела?',
+                            isRead: false,
+                            unreadMessagesCount: 0,
+                            createdAt: '13:01'
+                        }
+                    }
+                ]}
+            />
             {/*<Message*/}
             {/*    avatar='https://sun9-66.userapi.com/c855036/v855036084/23d7fc/IKHLGx8ruYU.jpg?ava=1'*/}
             {/*    text='Дарова братан, че как дела?🤗'*/}
