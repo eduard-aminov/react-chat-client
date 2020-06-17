@@ -1,22 +1,24 @@
 import {orderBy} from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import './Dialogs.scss'
-import {DialogItem} from '../index'
 
-const Dialogs = ({items, currentUserId}) => {
+import {MessageItem} from '../../components'
+import './Messages.scss'
+
+const Messages = ({items, currentUserId}) => {
     return (
-        <div className="dialogs">
+        <div className="messages">
             {orderBy(items, ['message.createdAt'], ['desc']).map(item => (
-                <DialogItem
+                <MessageItem
                     key={item._id}
-                    isMe={currentUserId === item.message.owner}
+                    isMe={currentUserId === item.message.ownerId}
                     fullName={item.user.fullName}
                     avatar={item.user.avatar}
-                    isOnline={item.user.isOnline}
-                    lastMessage={item.message.lastMessage}
+                    messageType={item.message.type}
+                    text={item.message.message}
+                    audio={item.message.audio}
+                    attachments={item.message.attachments}
                     createdAt={item.message.createdAt}
-                    unreadMessagesCount={item.message.unreadMessagesCount}
                     isRead={item.message.isRead}
                 />
             ))}
@@ -24,9 +26,9 @@ const Dialogs = ({items, currentUserId}) => {
     )
 }
 
-Dialogs.propTypes = {
+Messages.propTypes = {
     currentUserId: PropTypes.number,
     items: PropTypes.array
 }
 
-export default Dialogs
+export default Messages

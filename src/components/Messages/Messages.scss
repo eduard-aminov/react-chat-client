@@ -141,6 +141,60 @@
       }
     }
   }
+
+  &--is-audio {
+    #{$self}__bubble {
+      width: 250px;
+      position: relative;
+      overflow: hidden;
+    }
+    #{$self}__audio {
+      audio {
+        display: none;
+      }
+      &-wave {
+        display: flex;
+        img {
+          height: 30px;
+        }
+      }
+
+      &-progress {
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #418fff;
+        transition: 0.3s ease;
+      }
+
+      &-info {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      &-btn {
+        button {
+          cursor: pointer;
+          border: 0;
+          background: #0f3997;
+          width: 28px;
+          height: 28px;
+          border-radius: 30px;
+          img {
+            height: 9px;
+          }
+        }
+      }
+      &-duration {
+        color: #fff;
+        opacity: 0.5;
+        font-weight: 500;
+        font-size: 12px;
+      }
+    }
+  }
 }
 
 @keyframes typingAnimation {
