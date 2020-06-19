@@ -1,0 +1,55 @@
+.chat {
+  display: flex;
+  background-color: #fff;
+  width: 1140px;
+  margin: 0 auto;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.3);
+  height: 100%;
+
+  &__sidebar {
+    width: 320px;
+    border-right: 2px solid #f7f7f7;
+
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+
+      & > div {
+        span {
+          display: inline-block;
+          margin-right: 5px;
+        }
+      }
+    }
+
+    &-search {
+      padding: 0px 20px 20px 20px;
+
+      .ant-input {
+        height: 25px;
+        padding: 4px 11px 6px!important;
+      }
+    }
+
+    &-dialogs {
+      .dialogs {
+        &__item {
+          padding: 10px 20px;
+          margin-bottom: 0;
+          cursor: pointer;
+
+          &.active,
+          &:hover {
+            background-color: #f3f7ff
+          }
+        }
+      }
+    }
+
+  }
+
+  &__dialog {
+    flex: 1;
+  }
+}
