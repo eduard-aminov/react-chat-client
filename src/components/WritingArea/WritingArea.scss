@@ -1,0 +1,38 @@
+@import "src/styles/variables";
+
+.writing-area {
+  padding: 10px 20px 0px 20px;
+  position: relative;
+  border-top: 1px solid $grey;
+
+  .anticon {
+    font-size: 22px;
+  }
+
+  &__smile-btn,
+  &__actions {
+    cursor: pointer;
+    position: absolute;
+    z-index: 99;
+  }
+
+  &__smile-btn {
+    top: 17px;
+    left: 25px;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    width: 50px;
+    top:17px;
+    right: 25px;
+  }
+
+  input {
+    padding-left: 40px;
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}

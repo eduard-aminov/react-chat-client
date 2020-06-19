@@ -1,15 +1,20 @@
 import React from 'react'
-import './Block.scss'
+import PropTypes from 'prop-types'
+import './OnlineStatus.scss'
 import classNames from 'classnames'
 
-const Block = ({children, className}) => {
+const OnlineStatus = ({online}) => {
+    const statusClasses = classNames('status', {'status--online': online})
+
     return (
-        <div
-            className={classNames('block', className)}
-        >
-            {children}
+        <div className={statusClasses}>
+            {online ? 'онлайн' : 'офлайн'}
         </div>
     )
 }
 
-export default Block
+OnlineStatus.propTypes = {
+    online:PropTypes.bool
+}
+
+export default OnlineStatus
