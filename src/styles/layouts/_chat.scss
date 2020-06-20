@@ -19,7 +19,6 @@
       padding: 20px;
       height: 58px;
       border-bottom: 1px solid $grey;
-      margin-bottom: 20px;
 
       & > div {
         span {
@@ -29,18 +28,14 @@
       }
     }
 
-    &-search {
-      padding: 0px 20px 20px 20px;
-
-      .ant-input {
-        height: 25px;
-        padding: 4px 11px 6px!important;
-      }
+    .ant-input {
+      height: 25px;
+      padding: 4px 11px 6px!important;
     }
 
     &-dialogs {
       overflow: auto;
-      height: calc(100vh - 135px);
+      height: calc(100vh - 60px);
       .dialogs {
         &__item {
           padding: 10px 20px;

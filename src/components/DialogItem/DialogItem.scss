@@ -2,6 +2,11 @@
 
 .dialogs {
   width: 320px;
+
+  &-search {
+    padding: 20px;
+  }
+
   &__item {
     $item: &;
     display: flex;

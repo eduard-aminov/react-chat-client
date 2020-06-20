@@ -18,11 +18,6 @@ const Home = () => {
                         </div>
                         <FormOutlined />
                     </div>
-                    <div className="chat__sidebar-search">
-                        <Input.Search
-                            placeholder='Поиск среди контактов'
-                        />
-                    </div>
                     <div className="chat__sidebar-dialogs">
                         <Dialogs
                             currentUserId={0}
