@@ -1,0 +1,2 @@
+export const SET_DIALOGS = 'SET_DIALOGS'
+export const SET_CURRENT_DIALOG = 'SET_CURRENT_DIALOG'

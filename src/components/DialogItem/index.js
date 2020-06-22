@@ -8,6 +8,7 @@ import './DialogItem.scss'
 
 const DialogItem = (props) => {
     const {
+        id,
         fullName,
         avatar,
         lastMessage,
@@ -15,7 +16,8 @@ const DialogItem = (props) => {
         unreadMessagesCount,
         isOnline,
         isMe,
-        isRead
+        isRead,
+        onSelectDialog
     } = props
 
     const formatMessageTime = (time) => {
@@ -24,9 +26,12 @@ const DialogItem = (props) => {
             ? format(toDateTime, 'HH:mm')
             : format(toDateTime, 'dd.MM.yyyy')
     }
-
+    console.log(id)
     return (
-        <div className={classNames('dialogs__item', {'dialogs__item--online': isOnline})}>
+        <div
+            onClick={() => onSelectDialog(id)}
+            className={classNames('dialogs__item', {'dialogs__item--online': isOnline})}
+        >
             <div className="dialogs__item-avatar">
                 {avatar
                     ? <img src={avatar} alt={`Avatar of ${fullName}`} />
