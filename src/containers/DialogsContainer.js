@@ -9,7 +9,7 @@ const DialogsContainer = ({ items, getDialogs, setCurrentDialog}) => {
     const [filteredItems, setFilteredItems] = useState(items)
 
     useEffect(() => {
-        if (!items.length) {
+        if (!items) {
             getDialogs()
         } else {
             setFilteredItems(items)

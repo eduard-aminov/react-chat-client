@@ -17,7 +17,7 @@ const Dialogs = ({items, value, onChange, onSelectDialog}) => {
                     placeholder='Поиск среди контактов'
                 />
             </div>
-            {items.length ? (
+            {items ? (
                 orderBy(items, ['message.createdAt'], ['desc']).map(item => (
                     <DialogItem
                         key={item._id}

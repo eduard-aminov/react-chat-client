@@ -1,27 +1,31 @@
-import API from '../../api/'
-import {setDialogs} from '../actions'
-import {SET_CURRENT_DIALOG, SET_DIALOGS} from '../types'
+import API from '../../api/api'
+import {setIsFetching, setMessages} from '../actions'
+import {SET_IS_FETCHING, SET_MESSAGES} from '../types'
 
 const initialState = {
-    items: [],
-    currentDialog: null
+    items: null,
+    isFetching: false
 }
 
-const dialogsReducer = (state = initialState, { type, payload }) => {
+const messagesReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case SET_DIALOGS:
+        case SET_MESSAGES:
             return {...state, items: payload}
-        case SET_CURRENT_DIALOG:
-            return {...state, currentDialog: payload}
+        case SET_IS_FETCHING:
+            return {...state, isFetching: payload}
         default: return state
     }
 }
 
-export const getDialogs = () => (dispatch) => {
-    API.fetchDialogs()
+export const getMessages = (dialogId) => (dispatch) => {
+    dispatch(setIsFetching(true))
+    API.fetchMessages(dialogId)
         .then(res => {
-            dispatch(setDialogs(res.data))
-        })
+            dispatch(setMessages(res.data))
+        }).catch(() => {
+        dispatch(setIsFetching(false))
+    })
+    dispatch(setIsFetching(false))
 }
 
-export default dialogsReducer
+export default messagesReducer

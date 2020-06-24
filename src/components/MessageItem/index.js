@@ -1,16 +1,15 @@
 import React from 'react'
 import PropTypes, {object} from 'prop-types'
 import classNames from 'classnames'
-import {MessageStatusIcon, Time} from '../'
+import {DefaultAvatar, MessageStatusIcon, Time} from '../'
 import AudioMessage from './AudioMessage'
-import './MessageItem.scss'
 
 const MessageItem = (props) => {
     const {
         fullName,
         avatar,
         messageType,
-        text,
+        message,
         audio,
         attachments,
         createdAt,
@@ -36,14 +35,17 @@ const MessageItem = (props) => {
             <div className='message__content'>
                 {isMe && <MessageStatusIcon isRead={isRead} />}
                 <div className='message__avatar'>
-                    <img src={avatar} alt={`Avatar of ${fullName}`} />
+                    {avatar
+                        ? <img src={avatar} alt={`Avatar of ${fullName}`} />
+                        : <DefaultAvatar fullName={fullName} />
+                    }
                 </div>
                 <div className="message__info">
-                    {(isAudio || text || isTyping) && (
+                    {(isAudio || message || isTyping) && (
                         <div className='message__bubble'>
-                            {text && (
+                            {message && (
                                 <p className='message__text'>
-                                    {text}
+                                    {message}
                                 </p>
                             )}
                             {isTyping && (
@@ -82,10 +84,11 @@ MessageItem.propTypes = {
     fullName: PropTypes.string,
     avatar: PropTypes.string,
     messageType: PropTypes.string,
-    text: PropTypes.string,
+    message: PropTypes.string,
     audio: PropTypes.string,
     attachments: PropTypes.arrayOf(object),
-    createdAt: PropTypes.instanceOf(Date),
+    createdAt: PropTypes.string,
+    updatedAt: PropTypes.string,
     isMe: PropTypes.bool,
     isRead: PropTypes.bool,
 }

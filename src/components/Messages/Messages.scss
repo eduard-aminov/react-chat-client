@@ -1,5 +1,11 @@
 @import "src/styles/variables";
 
+.messages {
+  padding: 20px 20px 0px;
+  height: calc(100vh - 120px);
+  overflow: auto;
+}
+
 .message {
   $self: &;
 
@@ -13,6 +19,12 @@
   &__avatar {
     display: flex;
     flex-direction: column-reverse;
+    & > div {
+      height: 33px;
+      width: 33px;
+      margin-right: 13px;
+      margin-bottom: 5px;
+    }
     img {
       border-radius: 50%;
       height: 33px;

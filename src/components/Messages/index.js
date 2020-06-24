@@ -1,25 +1,36 @@
 import {orderBy} from 'lodash'
-import React from 'react'
+import React, {useCallback, useEffect, useRef} from 'react'
 import PropTypes from 'prop-types'
 
 import {MessageItem} from '../../components'
 import './Messages.scss'
 
 const Messages = ({items, currentUserId}) => {
+
+    const messagesRef = useRef(null)
+
+    useEffect(() => {
+        if (!messagesRef) {
+            return
+        }
+        
+        messagesRef.current.scrollTop = messagesRef.current.scrollHeight - messagesRef.current.clientHeight
+    },[items])
+
     return (
-        <div className="messages">
+        <div className="messages" ref={messagesRef}>
             {orderBy(items, ['message.createdAt'], ['desc']).map(item => (
                 <MessageItem
-                    key={item._id}
-                    isMe={currentUserId === item.message.ownerId}
-                    fullName={item.user.fullName}
-                    avatar={item.user.avatar}
-                    messageType={item.message.type}
-                    text={item.message.message}
-                    audio={item.message.audio}
-                    attachments={item.message.attachments}
-                    createdAt={item.message.createdAt}
-                    isRead={item.message.isRead}
+                    key={Math.random()}
+                    isMe={currentUserId === item.authorId}
+                    fullName={item.authorFullName}
+                    avatar={item.authorAvatar}
+                    // messageType={item.message.type}
+                    message={item.message}
+                    // audio={item.message.audio}
+                    attachments={item.attachments}
+                    createdAt={item.createdAt}
+                    isRead={item.isRead}
                 />
             ))}
         </div>

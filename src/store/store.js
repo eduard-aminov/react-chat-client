@@ -1,9 +1,10 @@
-import {applyMiddleware, createStore, compose, combineReducers} from 'redux'
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import {dialogsReducer} from './reducers/'
+import {dialogsReducer, messagesReducer} from './reducers'
 
 const rootReducer = combineReducers({
-    dialogs: dialogsReducer
+    dialogs: dialogsReducer,
+    messages: messagesReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

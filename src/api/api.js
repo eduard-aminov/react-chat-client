@@ -6,8 +6,11 @@ const instance = axios.create({
 
 const API = {
     fetchDialogs() {
-        return instance.get('dialogs').then(res => res)
-    }
+        return instance.get('dialogs')
+    },
+    fetchMessages(dialogId) {
+        return instance.get(`messages?_id=${dialogId}`)
+    },
 }
 
 export default API

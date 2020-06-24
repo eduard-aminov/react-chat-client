@@ -26,7 +26,7 @@ const DialogItem = (props) => {
             ? format(toDateTime, 'HH:mm')
             : format(toDateTime, 'dd.MM.yyyy')
     }
-    console.log(id)
+
     return (
         <div
             onClick={() => onSelectDialog(id)}

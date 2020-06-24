@@ -1,47 +1,28 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
-import {setCurrentDialog} from '../store/actions'
-import {getDialogs} from '../store/reducers/dialogsReducer'
-import {Dialogs} from '../components/'
+import {Messages} from '../components'
+import {getMessages} from '../store/reducers/messagesReducer'
 
-const DialogsContainer = ({ items, getDialogs, setCurrentDialog}) => {
-    const [value, setValue] = useState('')
-    const [filteredItems, setFilteredItems] = useState(items)
+const MessagesContainer = ({ items, getMessages, currentDialog}) => {
 
     useEffect(() => {
-        if (!items.length) {
-            getDialogs()
-        } else {
-            setFilteredItems(items)
+        if (currentDialog === null) {
+            return
         }
-    },[getDialogs, setFilteredItems, items])
 
-    const onSelectDialog = (id) => {
-        setCurrentDialog(id)
-    }
-
-    const onChange = (val) => {
-        setFilteredItems(
-            items.filter(
-                dialog => dialog.authorFullName.toLowerCase().indexOf(val.toLowerCase()) >= 0
-            )
-        )
-        setValue(val)
-    }
+        getMessages(currentDialog)
+    },[getMessages, currentDialog])
 
     return (
-        <Dialogs
-            items={filteredItems}
-            value={value}
-            onChange={onChange}
-            getDialogs={getDialogs}
-            onSelectDialog={onSelectDialog}
+        <Messages
+            items={items}
         />
     )
 }
 
 const mapStateToProps = (state) => ({
-    items: state.dialogs.items
+    items: state.messages.items,
+    currentDialog: state.dialogs.currentDialog
 })
 
-export default connect(mapStateToProps, {getDialogs, setCurrentDialog})(DialogsContainer)
+export default connect(mapStateToProps, {getMessages})(MessagesContainer)
