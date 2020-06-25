@@ -55,7 +55,7 @@ const MessageItem = (props) => {
                                     <span/>
                                 </div>
                             )}
-                            {(isAudio) && (
+                            {isAudio && (
                               <AudioMessage audio={audio}/>
                             )}
                         </div>

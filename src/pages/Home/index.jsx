@@ -38,9 +38,9 @@ const Home = () => {
                     </div>
                     <div className="chat__dialog-messages">
                         <MessagesContainer/>
-                    </div>
-                    <div className="chat__dialog-input">
-                        <WritingArea />
+                        <div className="chat__dialog-input">
+                            <WritingArea />
+                        </div>
                     </div>
                 </div>
             </div>

@@ -25,11 +25,11 @@ export const getDialogs = () => (dispatch) => {
     API.fetchDialogs()
         .then(res => {
             dispatch(setDialogs(res.data))
+            dispatch(setIsFetching(false))
         })
         .catch(() => {
             dispatch(setIsFetching(false))
         })
-    dispatch(setIsFetching(false))
 }
 
 export default dialogsReducer

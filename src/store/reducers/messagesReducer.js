@@ -22,10 +22,10 @@ export const getMessages = (dialogId) => (dispatch) => {
     API.fetchMessages(dialogId)
         .then(res => {
             dispatch(setMessages(res.data))
+            dispatch(setIsFetching(false))
         }).catch(() => {
         dispatch(setIsFetching(false))
     })
-    dispatch(setIsFetching(false))
 }
 
 export default messagesReducer
