@@ -11,6 +11,11 @@
     $item: &;
     display: flex;
     margin-bottom: 20px;
+
+    &--selected {
+      background-color: #f3f7ff;
+    }
+
     &--online {
       #{$item}-avatar {
         &::before {

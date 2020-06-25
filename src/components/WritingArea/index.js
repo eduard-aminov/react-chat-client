@@ -2,16 +2,36 @@ import {AudioOutlined, CameraOutlined, SmileOutlined, SendOutlined} from '@ant-d
 import {Button, Input} from 'antd'
 import React, {useState} from 'react'
 
+import Picker from 'emoji-picker-react'
 import { UploadField } from '@navjobs/upload'
 import './WritingArea.scss'
 
 const WritingArea = () => {
     const [isTyping, setIsTyping] = useState('')
+    const [chosenEmoji, setChosenEmoji] = useState(null)
+    const [isPickerOpen, setIsPickerOpen] = useState(false)
+
+    const onEmojiClick = (event, emojiObject) => {
+        setChosenEmoji(emojiObject)
+    }
+
+    const toggleIsPickerOpen = () => {
+        setIsPickerOpen(!isPickerOpen)
+    }
 
     return (
         <div className="writing-area">
+            {isPickerOpen && (
+                <div className='emoji-picker'>
+                    <Picker onEmojiClick={onEmojiClick} />
+                </div>
+            )}
             <div className="writing-area__smile-btn">
-                <Button type='text' icon={<SmileOutlined />}/>
+                <Button
+                    onClick={toggleIsPickerOpen}
+                    type='text'
+                    icon={<SmileOutlined />}
+                />
             </div>
             <Input
                 onChange={e => setIsTyping(e.target.value)}

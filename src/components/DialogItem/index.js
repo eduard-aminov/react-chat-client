@@ -17,7 +17,8 @@ const DialogItem = (props) => {
         isOnline,
         isMe,
         isRead,
-        onSelectDialog
+        onSelectDialog,
+        currentDialog
     } = props
 
     const formatMessageTime = (time) => {
@@ -27,10 +28,16 @@ const DialogItem = (props) => {
             : format(toDateTime, 'dd.MM.yyyy')
     }
 
+    const dialogItemClasses = classNames({
+        'dialogs__item': true,
+        'dialogs__item--online': isOnline,
+        'dialogs__item--selected': currentDialog === id
+    })
+
     return (
         <div
             onClick={() => onSelectDialog(id)}
-            className={classNames('dialogs__item', {'dialogs__item--online': isOnline})}
+            className={dialogItemClasses}
         >
             <div className="dialogs__item-avatar">
                 {avatar

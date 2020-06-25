@@ -1,5 +1,10 @@
 @import "src/styles/variables";
 
+.emoji-picker {
+  position: absolute;
+  bottom: 60px;
+}
+
 .writing-area {
   padding: 10px 20px 0px 20px;
   position: relative;

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import './Dialogs.scss'
 import {DialogItem} from '../index'
 
-const Dialogs = ({items, value, onChange, onSelectDialog}) => {
+const Dialogs = ({items, value, onChange, onSelectDialog, currentDialog}) => {
     const currentUserId = 0
 
     return (
@@ -31,6 +31,7 @@ const Dialogs = ({items, value, onChange, onSelectDialog}) => {
                         unreadMessagesCount={item.unreadMessagesCount}
                         isRead={item.isRead}
                         onSelectDialog={onSelectDialog}
+                        currentDialog={currentDialog}
                     />
                 ))
             ) : (
