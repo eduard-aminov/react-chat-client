@@ -1,35 +1,49 @@
 import {withFormik} from 'formik'
+import {baseValidate} from '../../../utils'
 import RegisterForm from '../components/RegisterForm'
 
 export default withFormik({
     enableReinitialize: true,
     mapPropsToValues: () => ({
-      email: '',
-      username: '',
-      password: '',
-      password2: ''
+        firstName: '',
+        lastName: '',
+        email: '',
+        username: '',
+        password: '',
+        password2: ''
     }),
     validate: values => {
-        let errors = {}
-        if (!values.email) {
-            errors.email = 'Введите email адрес'
-        } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(
-                values.email
-            )
-        ) {
-            errors.email = 'Некорректный email адрес '
-        }
-
-        if (!values.username) {
-            errors.username = 'Введите логин'
-        }
-
-        if (!values.password) {
-            errors.password = 'Введите пароль'
-        }
-        else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/.test(values.password)) {
-            errors.password = 'Слишком легкий пароль.'
+        let errors = {
+            firstName: baseValidate({
+                validationType: 'name',
+                validationValue: values['firstName'],
+                onEmptyErrorMessage: 'Введите имя',
+                onValidationErrorMessage: 'Некорректное имя',
+            }),
+            lastName: baseValidate({
+                validationType: 'name',
+                validationValue: values['lastName'],
+                onEmptyErrorMessage: 'Введите фамилию',
+                onValidationErrorMessage: 'Некорректная фамилия',
+            }),
+            email: baseValidate({
+                validationType: 'email',
+                validationValue: values['email'],
+                onEmptyErrorMessage: 'Введите email',
+                onValidationErrorMessage: 'Некорректный email',
+            }),
+            username: baseValidate({
+                validationType: 'username',
+                validationValue: values['username'],
+                onEmptyErrorMessage: 'Введите логин',
+                onValidationErrorMessage: 'Некорректный логин',
+            }),
+            password: baseValidate({
+                validationType: 'password',
+                validationValue: values['password'],
+                onEmptyErrorMessage: 'Введите пароль',
+                onValidationErrorMessage: 'Слишком лёгкий пароль',
+            }),
         }
 
         if (!values.password2) {
@@ -41,7 +55,8 @@ export default withFormik({
         else if (values.password !== values.password2) {
             errors.password2 = 'Пароли не совпадают'
         }
-        return errors;
+
+        return errors
     },
 
     handleSubmit: (values, { setSubmitting }) => {

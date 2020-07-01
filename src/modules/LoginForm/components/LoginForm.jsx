@@ -4,7 +4,16 @@ import {Form, Input} from 'antd'
 import {Link} from 'react-router-dom'
 import {Block, Button} from '../../../components'
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+    const {
+        values,
+        touched,
+        errors,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+    } = props
+
     return (
         <Fragment>
             <div className='auth__top'>
@@ -13,25 +22,50 @@ const LoginForm = () => {
             </div>
             <Block>
                 <Form
+                    onSubmit={handleSubmit}
                     className="login-form"
                 >
-                    <Form.Item>
+                    <Form.Item
+                        validateStatus={
+                            !touched.username
+                                ? ''
+                                : errors.username ? 'error' : 'success'
+                        }
+                        help={!touched.username ? '' : errors.username}
+                        hasFeedback
+                    >
                         <Input
+                            id='username'
                             size='large'
                             prefix={<UserOutlined className="site-form-item-icon" />}
-                            placeholder="Username"
+                            placeholder="Логин"
+                            value={values.username}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
                         />
                     </Form.Item>
-                    <Form.Item>
+                    <Form.Item
+                        validateStatus={
+                            !touched.password
+                                ? ''
+                                : errors.password ? 'error' : 'success'
+                        }
+                        help={!touched.password ? '' : errors.password}
+                        hasFeedback
+                    >
                         <Input
+                            id='password'
                             size='large'
                             prefix={<LockOutlined className="site-form-item-icon" />}
-                            type="password"
-                            placeholder="Password"
+                            placeholder="Пароль"
+                            value={values.password}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
                         />
                     </Form.Item>
                     <Form.Item>
                         <Button
+                            onClick={handleSubmit}
                             size='large'
                             type='primary'
                         >

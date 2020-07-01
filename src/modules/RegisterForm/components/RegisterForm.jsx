@@ -28,6 +28,44 @@ const RegisterForm = (props) => {
                         >
                             <Form.Item
                                 validateStatus={
+                                    !touched.firstName
+                                        ? ''
+                                        : errors.firstName ? 'error' : 'success'
+                                }
+                                help={!touched.firstName ? '' : errors.firstName}
+                                hasFeedback
+                            >
+                                <Input
+                                    id='firstName'
+                                    size='large'
+                                    prefix={<UserOutlined className="site-form-item-icon" />}
+                                    placeholder="Имя"
+                                    value={values.firstName}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                            </Form.Item>
+                            <Form.Item
+                                validateStatus={
+                                    !touched.lastName
+                                        ? ''
+                                        : errors.lastName ? 'error' : 'success'
+                                }
+                                help={!touched.lastName ? '' : errors.lastName}
+                                hasFeedback
+                            >
+                                <Input
+                                    id='lastName'
+                                    size='large'
+                                    prefix={<UserOutlined className="site-form-item-icon" />}
+                                    placeholder="Фамилия"
+                                    value={values.lastName}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                            </Form.Item>
+                            <Form.Item
+                                validateStatus={
                                     !touched.email
                                         ? ''
                                         : errors.email ? 'error' : 'success'
