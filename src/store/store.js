@@ -1,8 +1,9 @@
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import {dialogsReducer, messagesReducer} from './reducers'
+import {authReducer, dialogsReducer, messagesReducer} from './reducers'
 
 const rootReducer = combineReducers({
+    auth: authReducer,
     dialogs: dialogsReducer,
     messages: messagesReducer
 })

@@ -1,4 +1,9 @@
-import {SET_CURRENT_DIALOG, SET_DIALOGS, SET_IS_FETCHING, SET_MESSAGES} from '../types'
+import {SET_CURRENT_DIALOG, SET_DIALOGS, SET_ERRORS, SET_IS_FETCHING, SET_IS_REGISTERED, SET_MESSAGES} from '../types'
+
+export const setIsRegistered = (isRegistered) => ({
+    type: SET_IS_REGISTERED,
+    payload: isRegistered
+})
 
 export const setDialogs = (items) => ({
     type: SET_DIALOGS,
@@ -18,4 +23,9 @@ export const setMessages = (items) => ({
 export const setIsFetching = (isFetching) => ({
     type: SET_IS_FETCHING,
     payload: isFetching
+})
+
+export const setErrors = (errors) => ({
+    type: SET_ERRORS,
+    payload: errors
 })
