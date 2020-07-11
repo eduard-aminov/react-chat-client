@@ -1,8 +1,10 @@
+import {connect} from 'react-redux'
+import {login} from '../../../store/reducers/authReducer'
 import LoginForm from '../components/LoginForm'
 
 import {withFormik} from 'formik'
 
-export default withFormik({
+const EnhancedForm = withFormik({
     enableReinitialize: true,
     mapPropsToValues: () => ({
         username: '',
@@ -22,12 +24,17 @@ export default withFormik({
         return errors
     },
 
-    handleSubmit: (values, { setSubmitting }) => {
-        setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-        }, 1000);
+    handleSubmit: (values, { props, setSubmitting }) => {
+        props.login(values)
+        setSubmitting(false)
     },
 
     displayName: 'LoginForm',
 })(LoginForm)
+
+const mapStateToProps = (state) => ({
+    authErrors: state.auth.errors,
+    isFetching: state.auth.isFetching
+})
+
+export default connect(mapStateToProps, {login})(EnhancedForm)

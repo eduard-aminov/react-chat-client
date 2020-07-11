@@ -39,4 +39,17 @@ export const register = (payload) => async (dispatch) => {
     }
 }
 
+export const login = (payload) => async (dispatch) => {
+    dispatch(setIsFetching(true))
+    const response = await API.login(payload)
+    dispatch(setIsFetching(false))
+
+    if (response.error) {
+        console.log(response.error)
+        dispatch(setErrors(response.error))
+    } else {
+        console.log(response)
+    }
+}
+
 export default authReducer

@@ -3,7 +3,7 @@ import {LockOutlined, UserOutlined, MailOutlined, InfoCircleOutlined} from '@ant
 import {Form, Input} from 'antd'
 import {Link} from 'react-router-dom'
 import {Block, Button} from '../../../components'
-import {getErrorMessage, openNotification} from '../../../utils'
+import useError from '../../../hooks/useError'
 
 const RegisterForm = (props) => {
     const {
@@ -18,16 +18,7 @@ const RegisterForm = (props) => {
         authErrors
     } = props
 
-    useEffect(() => {
-        if (!authErrors.length) {
-            return
-        }
-        const errors = getErrorMessage(authErrors)
-
-        for (const message of errors) {
-            openNotification('error', 'Ошибка', message)
-        }
-    }, [authErrors])
+    useError(authErrors)
 
     return (
         <Fragment>
