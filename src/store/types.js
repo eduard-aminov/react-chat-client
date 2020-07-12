@@ -1,3 +1,5 @@
+export const SET_IS_LOGIN = 'AUTH/SET_IS_LOGIN'
+export const SET_TOKEN = 'AUTH/SET_TOKEN'
 export const SET_IS_REGISTERED = 'AUTH/SET_IS_REGISTERED'
 
 export const SET_DIALOGS = 'DIALOGS/SET_DIALOGS'

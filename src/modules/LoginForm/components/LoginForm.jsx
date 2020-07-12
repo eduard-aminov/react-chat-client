@@ -3,6 +3,7 @@ import {LockOutlined, UserOutlined} from '@ant-design/icons'
 import {Form, Input} from 'antd'
 import {Link} from 'react-router-dom'
 import {Block, Button} from '../../../components'
+import useError from '../../../hooks/useError'
 
 const LoginForm = (props) => {
     const {
@@ -12,7 +13,11 @@ const LoginForm = (props) => {
         handleChange,
         handleBlur,
         handleSubmit,
+        isFetching,
+        authErrors
     } = props
+
+    useError(authErrors)
 
     return (
         <Fragment>
@@ -53,10 +58,11 @@ const LoginForm = (props) => {
                         help={!touched.password ? '' : errors.password}
                         hasFeedback
                     >
-                        <Input
+                        <Input.Password
                             id='password'
                             size='large'
                             prefix={<LockOutlined className="site-form-item-icon" />}
+                            type="password"
                             placeholder="Пароль"
                             value={values.password}
                             onChange={handleChange}
@@ -68,6 +74,7 @@ const LoginForm = (props) => {
                             onClick={handleSubmit}
                             size='large'
                             type='primary'
+                            disabled={isFetching}
                         >
                             Войти в аккаунт
                         </Button>

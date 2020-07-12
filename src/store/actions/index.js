@@ -1,4 +1,22 @@
-import {SET_CURRENT_DIALOG, SET_DIALOGS, SET_ERRORS, SET_IS_FETCHING, SET_IS_REGISTERED, SET_MESSAGES} from '../types'
+import {
+    SET_CURRENT_DIALOG,
+    SET_DIALOGS,
+    SET_ERRORS,
+    SET_IS_FETCHING,
+    SET_IS_LOGIN,
+    SET_IS_REGISTERED,
+    SET_MESSAGES, SET_TOKEN
+} from '../types'
+
+export const setIsLogin = (isLogin) => ({
+    type: SET_IS_LOGIN,
+    payload: isLogin
+})
+
+export const setToken = (token) => ({
+    type: SET_TOKEN,
+    payload: token
+})
 
 export const setIsRegistered = (isRegistered) => ({
     type: SET_IS_REGISTERED,

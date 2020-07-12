@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect} from 'react'
+import React, {Fragment} from 'react'
 import {LockOutlined, UserOutlined, MailOutlined, InfoCircleOutlined} from '@ant-design/icons'
 import {Form, Input} from 'antd'
 import {Link} from 'react-router-dom'
@@ -29,7 +29,6 @@ const RegisterForm = (props) => {
                             <p>Для входа в чат, Вам нужно зарегистрироваться</p>
                         </div>
                         <Block>
-
                             <Form
                                 onSubmit={handleSubmit}
                                 className="login-form"
