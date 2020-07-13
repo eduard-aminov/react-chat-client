@@ -21,11 +21,19 @@ const API = {
     },
 
     fetchDialogs() {
-        return instance.get('dialogs')
+        try {
+            return instance.get('dialogs')
+        } catch (e) {
+            return this.error(e)
+        }
     },
 
     fetchMessages(dialogId) {
-        return instance.get(`messages?_id=${dialogId}`)
+        try {
+            return instance.get(`messages?_id=${dialogId}`)
+        } catch (e) {
+            return this.error(e)
+        }
     },
 
     async register(payload) {

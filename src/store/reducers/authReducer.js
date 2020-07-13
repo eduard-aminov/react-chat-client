@@ -1,11 +1,11 @@
 import API from '../../api/api'
-import {setErrors, setIsFetching, setIsLogin, setIsRegistered, setToken} from '../actions'
-import {SET_ERRORS, SET_IS_FETCHING, SET_IS_LOGIN, SET_IS_REGISTERED, SET_TOKEN} from '../types'
+import {setErrors, setIsFetching, setIsAuth, setIsRegistered, setToken} from '../actions'
+import {SET_ERRORS, SET_IS_FETCHING, SET_IS_AUTH, SET_IS_REGISTERED, SET_TOKEN} from '../types'
 
 const initialState = {
     user: null,
     token: null,
-    isLogin: null,
+    isAuth: null,
     isRegistered: false,
     isFetching: false,
     errors: []
@@ -13,8 +13,8 @@ const initialState = {
 
 const authReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case SET_IS_LOGIN: {
-            return {...state, isLogin: payload}
+        case SET_IS_AUTH: {
+            return {...state, isAuth: payload}
         }
 
         case SET_TOKEN: {
@@ -60,8 +60,9 @@ export const login = (payload) => async (dispatch) => {
         console.log(response.error)
         dispatch(setErrors(response.error))
     } else {
+        localStorage.setItem('token', JSON.stringify(response.data.token))
         dispatch(setToken(response.data.token))
-        dispatch(setIsLogin(true))
+        dispatch(setIsAuth(true))
     }
 }
 

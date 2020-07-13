@@ -8,13 +8,13 @@ const DialogsContainer = ({ items, getDialogs, setCurrentDialog, currentDialog})
     const [value, setValue] = useState('')
     const [filteredItems, setFilteredItems] = useState(items)
 
-    useEffect(() => {
-        if (!items) {
-            getDialogs()
-        } else {
-            setFilteredItems(items)
-        }
-    },[getDialogs, setFilteredItems, items])
+    // useEffect(() => {
+    //     if (!items) {
+    //         getDialogs()
+    //     } else {
+    //         setFilteredItems(items)
+    //     }
+    // },[getDialogs, setFilteredItems, items])
 
     const onSelectDialog = (id) => {
         setCurrentDialog(id)

@@ -1,17 +1,17 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
-import {setIsLogin, setToken} from './store/actions'
+import {setIsAuth, setToken} from './store/actions'
 import Routes from './routes'
 
-const App = ({ setToken, setIsLogin }) => {
+const App = ({ setToken, setIsAuth }) => {
 
     useEffect(() => {
-        const data = JSON.parse(localStorage.getItem('userData'))
+        const data = JSON.parse(localStorage.getItem('token'))
         if (data) {
             setToken(data)
-            setIsLogin(true)
+            setIsAuth(true)
         }
-    }, [setToken, setIsLogin])
+    }, [setToken, setIsAuth])
 
     return (
         <div className="wrapper">
@@ -20,4 +20,4 @@ const App = ({ setToken, setIsLogin }) => {
     )
 }
 
-export default connect(null, { setToken, setIsLogin } )(App)
+export default connect(null, { setToken, setIsAuth } )(App)

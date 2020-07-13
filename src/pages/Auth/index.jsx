@@ -1,9 +1,13 @@
 import React from 'react'
 import './Auth.scss'
+import {Redirect} from 'react-router'
 import {LoginForm, RegisterForm} from '../../modules'
 
-const Auth = ({location}) => {
-    const isRegisterPage = location.pathname.includes('register')
+const Auth = ({ isRegisterPage, isAuth }) => {
+
+    if (isAuth) {
+        return <Redirect to={'/im'} />
+    }
 
     return (
         <section className='auth'>

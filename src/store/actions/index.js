@@ -3,14 +3,14 @@ import {
     SET_DIALOGS,
     SET_ERRORS,
     SET_IS_FETCHING,
-    SET_IS_LOGIN,
+    SET_IS_AUTH,
     SET_IS_REGISTERED,
     SET_MESSAGES, SET_TOKEN
 } from '../types'
 
-export const setIsLogin = (isLogin) => ({
-    type: SET_IS_LOGIN,
-    payload: isLogin
+export const setIsAuth = (isAuth) => ({
+    type: SET_IS_AUTH,
+    payload: isAuth
 })
 
 export const setToken = (token) => ({

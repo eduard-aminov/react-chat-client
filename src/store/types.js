@@ -1,4 +1,4 @@
-export const SET_IS_LOGIN = 'AUTH/SET_IS_LOGIN'
+export const SET_IS_AUTH = 'AUTH/SET_IS_AUTH'
 export const SET_TOKEN = 'AUTH/SET_TOKEN'
 export const SET_IS_REGISTERED = 'AUTH/SET_IS_REGISTERED'
 
